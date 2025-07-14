@@ -8,5 +8,6 @@ module.exports = merge(common, {
     static: './dist',
     open: true,
     hot: true,
+    watchFiles: ['src/**/*'],
   },
 });
