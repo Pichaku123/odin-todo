@@ -1,6 +1,6 @@
 import { TodoItem } from "./todo-item";
 
-class ProjectItem{
+class ProjectItem{  
     
     constructor(_projectTitle){
         this.projectTitle=_projectTitle;

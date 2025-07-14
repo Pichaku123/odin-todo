@@ -1,38 +1,18 @@
 import { ProjectItem } from "./project-item";
 //gonna show this on sidebar
 
-
-// const tempTitle="temporary";
-
-// class Projects{
-//     constructor(){
-//         this.projectList=[];
-//     }
-
-//     createProject = (title) => {
-//         const project= new ProjectItem(title);
-//         this.projectList.push(project);
-//         this.getProjects();
-//     }
-
-//     getProjects = () => {
-//         console.log(this.projectList);
-//     }
-
-// }
-
-const projects= (() => {
+const projects= (() => {    //used factory function+IIFe cuz we only need 1 instance of projectlist.
     let projectList=[];
     
     const createProject = (title) => {
         const project= new ProjectItem(title);
         projectList.push(project);
-        getProjects();
         return project;
     }
 
     const getProjects = () => {
         console.log(projectList);
+        return projectList;
     }
 
     const removeProject = (title) => {
