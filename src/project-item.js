@@ -11,7 +11,6 @@ class ProjectItem{
     addTodo=(title, desc, dueDate, prio, complete) => {
         const item= new TodoItem(title, desc, dueDate, prio, complete);
         this.todoList.push(item);
-        console.log(item.getDetails());
     }
 
     removeTodo(title){
