@@ -6,3 +6,4 @@ const image=document.createElement("img");
 image.src= cat;
 document.body.appendChild(image);
 console.log(msg);
+alert("Yeah it works fine");
