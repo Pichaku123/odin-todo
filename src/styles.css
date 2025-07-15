@@ -29,6 +29,18 @@ header{
     border: 2px solid black;
 }
 
+.card{
+    display: flex;
+    width: 500px;
+    border: 2px solid black;
+    justify-content: space-between;
+}
+
+.flag{
+    width: 10px;
+    height: 10px;
+}
+
 footer{
     grid-column: 1/span 2;
     border: 2px solid black;

@@ -6,9 +6,9 @@ const project1= projects.createProject("Project 1");
 const project2= projects.createProject("Project 2");
 const project3= projects.createProject("Project 3");
 
-project1.addTodo("todo1", "something", "temp", "1", false);
-project1.addTodo("todo2", "something else", "temp", "2", true);
-project2.addTodo("todo1", "something", "haha", "2034", true);
+project1.addTodo("todo1", "something", "1", "low", false);
+project1.addTodo("todo2", "something else", "2", "mid", true);
+project2.addTodo("todo1", "something", "2034", "high", true);
 
 projects.getProjects();
 

@@ -14,11 +14,21 @@
         <ul id="project-menu">
             <!-- generate the rest -->
         </ul>
+        <div id="project-add">+ Add Project</div>
     </div>
 
     <div id="content">
         smth smth
     </div>
+
+    <dialog id="project-modal">
+        <form method="dialog" id="project-form">
+            <label for="project-title">Add Project Title</label>
+            <input type="text" name="project-title" id="project-title" maxlength="20">
+            <button type="submit" id="project-submit">Submit</button>
+            <button id="project-cancel">Cancel</button>
+        </form>
+    </dialog>
 
     <footer>footer here</footer>
 
