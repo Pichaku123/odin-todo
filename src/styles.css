@@ -23,6 +23,11 @@ header{
     border: 2px solid black;
 }
 
+.project-row{
+    display: flex;
+    justify-content: space-between;
+}
+
 #content{
     grid-row: 2/span 1;
     grid-column: 2/span 1;

@@ -17,7 +17,7 @@ const projects= (() => {    //used factory function+IIFe cuz we only need 1 inst
 
     const removeProject = (title) => {
         const position = projectList.findIndex((project) => {
-            return project.title===title;
+            return project.projectTitle===title;
         })
         projectList.splice(position, 1);
     }

@@ -68,14 +68,30 @@ const makeTodoModal= (() => {
 })();
 
 const renderSidebar= () => {
+    projectMenu.textContent="";
     projects.getProjects().forEach(project => {
         const title=project.projectTitle;
         const item=document.createElement("li");
-        item.textContent=title;
+        const name=document.createElement("p");
+        name.textContent=title;
 
-        item.addEventListener("click", () => {
+        const remove=document.createElement("div");
+        remove.setAttribute("id", "project-remove");
+        remove.textContent="X";
+
+        item.appendChild(name);
+        item.appendChild(remove);
+        item.classList.add("project-row");
+
+        name.addEventListener("click", () => {
             renderContent(project);
         });
+
+        remove.addEventListener("click", () => {
+            projects.removeProject(title);
+            renderSidebar(projects);
+        });
+
         projectMenu.appendChild(item);
     });
 
@@ -101,6 +117,7 @@ const renderContent= (project) => {
 }
 
 const renderTodos= (project) => {
+    content.textContent="";
 
     project.todoList.forEach((todo) => {
         const card=document.createElement("div");
