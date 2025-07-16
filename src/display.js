@@ -1,4 +1,5 @@
 import { projects } from "./project-list";
+import { format, parseISO } from 'date-fns';
 
 //put in correct spots later
 const sidebar=document.querySelector("#sidebar");
@@ -120,6 +121,8 @@ const renderTodos= (project) => {
     content.textContent="";
 
     project.todoList.forEach((todo) => {
+        const todoCard=document.createElement("div");
+        todoCard.classList.add("todo-card");
         const card=document.createElement("div");
         card.classList.add("card");
 
@@ -137,11 +140,31 @@ const renderTodos= (project) => {
         title.classList.add("title");
 
         const dueDate=document.createElement("p");
-        dueDate.textContent=todo.dueDate;
-        const remove=document.createElement("button");
+        dueDate.textContent=format(parseISO(todo.dueDate), "do MMM yyyy");
         dueDate.classList.add("dueDate");
-        remove.classList.add("remove");
 
+        const details=document.createElement("button");
+        details.classList.add("details");
+        details.textContent="details";
+        let detailsShown=false;
+        const desc=document.createElement("p");   //moved it outside cuz we only wanna edit contents of this
+
+        details.addEventListener("click", () => {
+            desc.innerHTML=`<p>Due- ${dueDate.textContent}</p>
+            <p>Priority- ${todo.prio}</p>
+            <p>Description- ${todo.desc}</p>
+            `;
+            desc.style.display="none";
+            desc.classList.add("todo-desc");
+
+            detailsShown=!detailsShown;
+            desc.style.display=(detailsShown) ? "block" : "none";
+
+            todoCard.appendChild(desc);
+        });
+
+        const remove=document.createElement("button");
+        remove.classList.add("remove");
         remove.textContent="remove";
         remove.addEventListener("click", () => {
             console.log(`Removing ${title.textContent}`);
@@ -153,8 +176,10 @@ const renderTodos= (project) => {
         card.appendChild(title);
         card.appendChild(dueDate);
         card.appendChild(remove);
+        card.appendChild(details);
+        todoCard.appendChild(card);
 
-        content.appendChild(card);
+        content.appendChild(todoCard);
     });
 };
 
