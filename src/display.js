@@ -9,10 +9,10 @@ const projectForm=document.querySelector("#project-form");
 const projectAdd=document.querySelector("#project-add");
 const projectSubmit=document.querySelector("#project-submit");
 const projectCancel=document.querySelector("#project-cancel");
+const todoModal=document.querySelector("#todo-modal");  //moved to top cuz scope
 
-// const addProject= (projectList, project) => {
-//     projects.createProject();
-// }
+
+let currentProject=null;
 
 const makeProjectModal= (() => {
     //only add to the sidebar itself, not each project
@@ -24,7 +24,7 @@ const makeProjectModal= (() => {
         e.preventDefault();
         const title=document.querySelector("#project-title").value;
         if(title){      //if the form is empty, ignore.
-            projects.createProject(title);
+            const newProject= projects.createProject(title);
             projectMenu.textContent="";     //just resetting before loading again
             renderSidebar();
             projectForm.reset();
@@ -40,9 +40,32 @@ const makeProjectModal= (() => {
         
 })();
 
-const makeTodoModal= () => {
+const makeTodoModal= (() => {
     
-}
+    const todoForm=document.querySelector("#todo-form");
+    const todoCancel=document.querySelector("#todo-cancel");
+
+    todoForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const title=document.querySelector("#todo-title").value;
+        const dueDate=document.querySelector("#todo-duedate").value;
+        const prio=document.querySelector("#prio-select").value;
+        const desc=document.querySelector("#todo-desc").value;
+        if(title && dueDate && prio){   //desc not required
+            currentProject.addTodo(title, desc, dueDate, prio, false);
+            renderContent(currentProject);
+            todoForm.reset();
+        }
+        todoModal.close();
+    });
+
+    todoCancel.addEventListener("click", (e) => {
+        e.preventDefault();
+        todoForm.reset();
+        todoModal.close();
+    })
+
+})();
 
 const renderSidebar= () => {
     projects.getProjects().forEach(project => {
@@ -59,17 +82,22 @@ const renderSidebar= () => {
 }
 
 const renderContent= (project) => {
+    currentProject=project;
     content.innerHTML=`${project.projectTitle}`;
     console.log(project.todoList);
 
     renderTodos(project);
 
     const add=document.createElement("div");
-    add.textContent="+";
-    const text=document.createElement("p");
-    text.textContent="Add todo- ";
-    add.appendChild(text);
+    add.textContent="+ Add todo";
+    add.setAttribute("id", "todo-add");
     content.appendChild(add);
+
+    //had to shift this eventlistener here instead of maketodomodal
+    //cuz we haven't made the modal yet, so todo-add doesnt exist.
+    add.addEventListener("click", () => {
+        todoModal.showModal();
+    });
 }
 
 const renderTodos= (project) => {

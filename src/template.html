@@ -30,6 +30,29 @@
         </form>
     </dialog>
 
+    <dialog id="todo-modal">
+        <form method="dialog" id="todo-form">
+            <label for="todo-title">Add Todo Title</label>
+            <input type="text" name="todo-title" id="todo-title" maxlength="50">
+
+            <label for="todo-duedate">Due date-</label>
+            <input type="text" name="todo-duedate" id="todo-duedate">
+
+            <label for="todo-prio">Priority-</label>
+            <select id="prio-select">
+                <option value="default">Low</option>
+                <option>Medium</option>
+                <option>High</option>
+            </select>
+
+            <label for="todo-desc">Add description</label>
+            <input type="text" name="todo-desc" id="todo-desc" maxlength="150">
+
+            <button type="submit" id="todo-submit">Submit</button>
+            <button id="todo-cancel">Cancel</button>
+        </form>
+    </dialog>
+
     <footer>footer here</footer>
 
 </body>
