@@ -11,4 +11,4 @@ if(allProjects.length>0){
     renderContent(allProjects[0]);
 }
 
-console.log("compiling finished");
+console.log("compiling finished tehehe");
