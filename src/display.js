@@ -11,7 +11,7 @@ const projectAdd=document.querySelector("#project-add");
 const projectSubmit=document.querySelector("#project-submit");
 const projectCancel=document.querySelector("#project-cancel");
 const todoModal=document.querySelector("#todo-modal");  //moved to top cuz scope
-
+const currentProjTitle="";
 
 let currentProject=null;
 
@@ -100,7 +100,6 @@ const renderSidebar= () => {
 
 const renderContent= (project) => {
     currentProject=project;
-    content.innerHTML=`${project.projectTitle}`;
     console.log(project.todoList);
 
     renderTodos(project);
@@ -118,7 +117,7 @@ const renderContent= (project) => {
 }
 
 const renderTodos= (project) => {
-    content.textContent="";
+    content.innerHTML=`<div id="current-project">${project.projectTitle}</div>`;
 
     project.todoList.forEach((todo) => {
         const todoCard=document.createElement("div");
@@ -129,24 +128,25 @@ const renderTodos= (project) => {
         const flag=document.createElement("div");
         flag.classList.add("flag");
         if(todo.complete){
-            flag.style.backgroundColor="green";
+            flag.style.backgroundColor="#10b981";
         }
         else{
-            flag.style.backgroundColor="red";
+            flag.style.backgroundColor="#ef4444";
         }
 
-        const title=document.createElement("p");
+        const title=document.createElement("h1");
         title.textContent= todo.title;
         title.classList.add("title");
 
-        const dueDate=document.createElement("p");
+        const dueDate=document.createElement("h3");
         dueDate.textContent=format(parseISO(todo.dueDate), "do MMM yyyy");
         dueDate.classList.add("dueDate");
 
         const details=document.createElement("button");
-        details.classList.add("details");
-        details.textContent="details";
+        details.setAttribute("id", "details");
+        details.textContent="Details...";
         let detailsShown=false;
+
         const desc=document.createElement("p");   //moved it outside cuz we only wanna edit contents of this
 
         details.addEventListener("click", () => {
@@ -164,19 +164,29 @@ const renderTodos= (project) => {
         });
 
         const remove=document.createElement("button");
-        remove.classList.add("remove");
-        remove.textContent="remove";
+        remove.setAttribute("id", "remove");
+        remove.textContent="X";
         remove.addEventListener("click", () => {
             console.log(`Removing ${title.textContent}`);
             project.removeTodo(title.textContent);
             renderContent(project);
         });
 
-        card.appendChild(flag);
-        card.appendChild(title);
-        card.appendChild(dueDate);
-        card.appendChild(remove);
-        card.appendChild(details);
+        const cardLeft=document.createElement("div");
+        const cardRight=document.createElement("div");
+        cardLeft.classList.add("card-left");
+        cardRight.classList.add("card-right");
+
+        cardLeft.appendChild(flag);
+        cardLeft.appendChild(title);
+        cardLeft.appendChild(dueDate);
+
+        cardRight.appendChild(details);
+        cardRight.appendChild(remove);
+
+        card.appendChild(cardLeft);
+        card.appendChild(cardRight);
+
         todoCard.appendChild(card);
 
         content.appendChild(todoCard);
@@ -185,4 +195,4 @@ const renderTodos= (project) => {
 
 
 
-export{renderSidebar};
+export{renderSidebar, renderContent};

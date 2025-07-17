@@ -1,8 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Edu+VIC+WA+NT+Hand:wght@400..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Roboto', 'sans-serif';
+}
+
+:root{
+    --light: #eee;
+    --dark: #333
 }
 
 body{
@@ -15,38 +21,169 @@ body{
 
 header{
     grid-column: 1/span 2;
-    border: 2px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    background-color: var(--dark);
+    color: var(--light);
+    font-weight: bold;
 }
 
 #sidebar{
     grid-row: 2/span 1;
-    border: 2px solid black;
+    padding: 7.5% 10%;
+    overflow: auto;
+    background-color: #e5e7eb;
+    color: #111827;
+}
+
+#sidebar > h1{
+    padding-bottom: 1rem;
+    font-size: 2rem;
 }
 
 .project-row{
     display: flex;
     justify-content: space-between;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
 }
 
 #content{
     grid-row: 2/span 1;
     grid-column: 2/span 1;
-    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 2rem 5rem;
+    background-color: #f4f4f7;
+}
+
+#current-project{
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+
 }
 
 .card{
     display: flex;
-    width: 500px;
-    border: 2px solid black;
+    width: 50vw;
     justify-content: space-between;
+    gap: 10%;
+    align-items: center;
+    margin-bottom: 1rem;
+    border: 2px solid #adaeaf;
+    font-size: 0.8rem;
+    padding: 1rem 1rem;
+}
+
+.card > button{
+    font-size: 1rem;
+}
+
+.card-left{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.card-right{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+#remove{
+    padding: 0.2rem 0.2rem;
+    background-color: transparent;
+    border: none;
+}
+
+#details{
+    padding: 0.2rem 1rem;
+    border-radius: 0.4rem;
+    font-size: 1.1rem;
+}
+
+.todo-desc{
+    margin-bottom: 1rem;
+    border: 2px solid #adaeaf;
+    padding: 0.5rem 1rem;
+}
+
+#todo-add{
+    font-size: 1.2rem;
 }
 
 .flag{
-    width: 10px;
-    height: 10px;
+    height: 2.5rem;
+    width: 2.5rem;
+    border: 1px solid black;
+    border-radius: 3rem;
+}
+
+#todo-modal{
+    height: 40vh;
+    width: 40vw;
+    padding: 2rem 2rem;
+    margin: 20vh auto;
+}
+
+.todo-formrow{
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    font-size: 1.2rem;
+    gap: 2rem;
+    text-align: center;
+    margin-bottom: 0.8rem;
+}
+
+.todo-btn, .project-btn{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.todo-btn > button, .project-btn > button{
+    padding: 0.4rem 1.2rem;
+    font-size: 1.1rem;
+}
+
+#project-modal{
+    height: 25vh;
+    width: 40vw;
+    padding: 2rem 2rem;
+    margin: 30vh auto;
+    font-size: 1.5rem;
+}
+
+.project-formrow{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 10px;
+}
+
+#project-modal::backdrop, #todo-modal::backdrop{
+    background-color: #1f2937;
+    opacity: 50%;
+}
+
+input{
+    padding-left: 0.2rem;
 }
 
 footer{
     grid-column: 1/span 2;
-    border: 2px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.1rem;
+    background-color: var(--dark);
+    color: var(--light);
 }
